@@ -10,7 +10,6 @@ var instance = require('./Razorpay');
 // const bodyParser = require('body-parser');
 // app.use(bodyParser.json());
 app.use(express.json());
-app.use(express.static('static'))
 const cors = require('cors');
 app.use(cors());
 
@@ -27,11 +26,7 @@ optionsSuccessStatus:204,
 app.use(cors(corsOptions));
 const path = require('path');
 
-app.use(express.static('static'))
 app.use(express.urlencoded({extended: true}));
-app.get('*',(req,res)=>{
-res.sendFile(path.join(__dirname,"static/index.html"))
-})
 
 
 
