@@ -16,6 +16,7 @@ const form2 = require("./FormData");
 const form3 = require("./FormData");
 const corsOptions = {
   origin: "https://atraski.com",
+  // origin: "*",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   optionsSuccessStatus: 204,
@@ -23,7 +24,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 const path = require("path");
-const { createUser } = require("./controllers/DFCcontroller");
+const { createUser } = require("./controllers/FashionDesignerNew");
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -352,4 +353,17 @@ app.post("/saveDataToDatabase6", async (req, resp) => {
   }
 });
 
-app.post("/DFCRegistration", createUser);
+app.post("/fashionDesignerNew", createUser);
+
+app.post("/Order7", async (req, resp) => {
+  const option = {
+    amount: Number(17700 * 100),
+    currency: "INR",
+  };
+  const order = await instance.orders.create(option);
+  console.log(order);
+  resp.status(200).json({
+    success: true,
+    order,
+  });
+});

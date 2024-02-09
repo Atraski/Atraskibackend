@@ -18,9 +18,10 @@ const DFCSchema = new mongoose.Schema({
   city: String,
   years: Number,
   twitter: String,
+  amount: Number,
 });
 
 // Create a model using the schema
-const DFC = mongoose.model("DFCmodel", DFCSchema);
+const FashionDesignerNew = mongoose.model("FashionDesignerNew", DFCSchema);
 
-module.exports = DFC;
+module.exports = FashionDesignerNew;
