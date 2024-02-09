@@ -367,3 +367,27 @@ app.post("/Order7", async (req, resp) => {
     order,
   });
 });
+app.post("/Order8", async (req, resp) => {
+  const option = {
+    amount: Number(17700 * 100),
+    currency: "INR",
+  };
+  const order = await instance.orders.create(option);
+  console.log(order);
+  resp.status(200).json({
+    success: true,
+    order,
+  });
+});
+app.post("/Order9", async (req, resp) => {
+  const option = {
+    amount: Number(2000 * 100),
+    currency: "INR",
+  };
+  const order = await instance.orders.create(option);
+  console.log(order);
+  resp.status(200).json({
+    success: true,
+    order,
+  });
+});
