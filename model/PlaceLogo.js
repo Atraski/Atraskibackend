@@ -1,24 +1,20 @@
-const mongoose = require("mongoose");
 const moment = require("moment-timezone");
+const mongoose = require("mongoose");
 
 // Define the schema
-const DFCSchema = new mongoose.Schema({
+const placeLogoSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
   },
-  email: {
+  brand: {
     type: String,
     required: true,
-    // unique: true,
   },
   insta: String,
-  fb: String,
-  dresses: Number,
-  labelName: String,
   city: String,
-  years: Number,
-  twitter: String,
+  gst: String,
+  add: String,
   amount: Number,
   date: {
     type: Date,
@@ -29,6 +25,6 @@ const DFCSchema = new mongoose.Schema({
 });
 
 // Create a model using the schema
-const FashionDesignerNew = mongoose.model("FashionDesignerNew", DFCSchema);
+const PlaceLogo = mongoose.model("PlaceLogo", placeLogoSchema);
 
-module.exports = FashionDesignerNew;
+module.exports = PlaceLogo;

@@ -3,9 +3,11 @@ const FashionDesignerNew = require("../model/FashionDesignerNew");
 // Function to create a new user
 const createUser = async (req, res) => {
   try {
+    // console.log(req.body);
     const newUser = await FashionDesignerNew.create(req.body);
     res.status(201).json(newUser);
   } catch (error) {
+    // console.log(error.message);
     res.status(500).json({ error: error.message });
   }
 };

@@ -25,6 +25,10 @@ const corsOptions = {
 app.use(cors(corsOptions));
 const path = require("path");
 const { createUser } = require("./controllers/FashionDesignerNew");
+const {
+  createExperiencedDesigner,
+} = require("./controllers/ExperiencedDesignerNew");
+const { createPlaceLogo } = require("./controllers/PlaceLogo");
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -354,6 +358,8 @@ app.post("/saveDataToDatabase6", async (req, resp) => {
 });
 
 app.post("/fashionDesignerNew", createUser);
+app.post("/createExperiencedDesigner", createExperiencedDesigner);
+app.post("/createPlaceLogo", createPlaceLogo);
 
 app.post("/Order7", async (req, resp) => {
   const option = {
