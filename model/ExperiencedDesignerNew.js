@@ -1,8 +1,8 @@
-const mongoose = require("mongoose");
 const moment = require("moment-timezone");
+const mongoose = require("mongoose");
 
 // Define the schema
-const DFCSchema = new mongoose.Schema({
+const ExperiencedSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -10,7 +10,6 @@ const DFCSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    // unique: true,
   },
   insta: String,
   fb: String,
@@ -29,6 +28,9 @@ const DFCSchema = new mongoose.Schema({
 });
 
 // Create a model using the schema
-const FashionDesignerNew = mongoose.model("FashionDesignerNew", DFCSchema);
+const ExperiencedDesignerNew = mongoose.model(
+  "ExperiencedDesignerNew",
+  ExperiencedSchema
+);
 
-module.exports = FashionDesignerNew;
+module.exports = ExperiencedDesignerNew;
