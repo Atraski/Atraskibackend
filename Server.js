@@ -29,6 +29,7 @@ const {
   createExperiencedDesigner,
 } = require("./controllers/ExperiencedDesignerNew");
 const { createPlaceLogo } = require("./controllers/PlaceLogo");
+const { createFashionAttendee } = require("./controllers/FashionAttendee");
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -360,6 +361,7 @@ app.post("/saveDataToDatabase6", async (req, resp) => {
 app.post("/fashionDesignerNew", createUser);
 app.post("/createExperiencedDesigner", createExperiencedDesigner);
 app.post("/createPlaceLogo", createPlaceLogo);
+app.post("/createFashionAttendee", createFashionAttendee);
 
 app.post("/Order7", async (req, resp) => {
   const option = {
