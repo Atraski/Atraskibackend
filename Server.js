@@ -15,8 +15,8 @@ app.use(cors());
 const form2 = require("./FormData");
 const form3 = require("./FormData");
 const corsOptions = {
-  origin: "https://atraski.com",
-  // origin: "*",
+  // origin: "https://atraski.com",
+  origin: "*",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   optionsSuccessStatus: 204,
@@ -31,6 +31,7 @@ const {
 const { createPlaceLogo } = require("./controllers/PlaceLogo");
 const { createFashionAttendee } = require("./controllers/FashionAttendee");
 const { createModelForm } = require("./controllers/ModelForm");
+const { createBloggerForm } = require("./controllers/BloggerForm");
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -364,6 +365,7 @@ app.post("/createExperiencedDesigner", createExperiencedDesigner);
 app.post("/createPlaceLogo", createPlaceLogo);
 app.post("/createFashionAttendee", createFashionAttendee);
 app.post("/createModelForm", createModelForm);
+app.post("/createBloggerForm", createBloggerForm);
 
 app.post("/Order7", async (req, resp) => {
   const option = {
