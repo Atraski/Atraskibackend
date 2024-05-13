@@ -11,7 +11,6 @@ var instance = require("./Razorpay");
 // app.use(bodyParser.json());
 app.use(express.json());
 const cors = require("cors");
-app.use(cors());
 const form2 = require("./FormData");
 const form3 = require("./FormData");
 const corsOptions = {
@@ -51,10 +50,15 @@ app.post("/Order", async (req, resp) => {
 });
 
 app.get("/key", (req, resp) => {
-  resp.json({ key: instance.key_id });
+  try {
+    console.log("KEYS SENT");
+    resp.json({ key: instance.key_id });
+  } catch (error) {
+    console.log("Keys", error);
+  }
 });
 
-// app.post('/verification', async (req, resp) => {
+// app.post("/verification", async (req, resp) => {
 //   try {
 //     // Log the received data
 //     const {
@@ -66,20 +70,19 @@ app.get("/key", (req, resp) => {
 //       Town,
 //       Number,
 //       quantity,
-//       aamount
+//       aamount,
 //     } = req.body;
 
-//     console.log('Received form data:', req.body);
+//     console.log("Received form data:", req.body);
 
-//   const body = razorpay_order_id + '|' + razorpay_payment_id;
+//     const body = razorpay_order_id + "|" + razorpay_payment_id;
 
-//   const expectedSignature = crypto
-//     .createHmac('sha256', 'wyTuLIkM1pDzjPnYg9E3NV6E')
-//     .update(body.toString())
-//     .digest('hex');
+//     const expectedSignature = crypto
+//       .createHmac("sha256", "wyTuLIkM1pDzjPnYg9E3NV6E")
+//       .update(body.toString())
+//       .digest("hex");
 
 //     if (expectedSignature === razorpay_signature) {
-
 //       // Combine the form data and Razorpay response
 //       const formData = new form({
 //         name: name,
@@ -90,13 +93,13 @@ app.get("/key", (req, resp) => {
 //         aamount: aamount,
 //         razorpay_order_id: razorpay_order_id,
 //         razorpay_signature: razorpay_signature,
-//         razorpay_payment_id: razorpay_payment_id
+//         razorpay_payment_id: razorpay_payment_id,
 //         // Add any other form fields here
 //       });
 
 //       // Save the form data to the database
 //       const savedFormData = await formData.save();
-//       console.log('Form data saved:', savedFormData);
+//       console.log("Form data saved:", savedFormData);
 
 //       resp.status(200).json({
 //         success: true,
@@ -111,14 +114,14 @@ app.get("/key", (req, resp) => {
 //     } else {
 //       resp.status(400).json({
 //         success: false,
-//         error: 'Signature mismatch',
+//         error: "Signature mismatch",
 //       });
 //     }
 //   } catch (error) {
-//     console.error('Error handling form data:', error);
+//     console.error("Error handling form data:", error);
 //     resp.status(500).json({
 //       success: false,
-//       error: 'Error handling form data',
+//       error: "Error handling form data",
 //     });
 //   }
 // });
@@ -284,7 +287,6 @@ app.post("/saveDataToDatabase5", async (req, resp) => {
       email: email,
       Town: Town,
       Number: Number,
-
       amount: amount,
     });
 
@@ -368,16 +370,24 @@ app.post("/createModelForm", createModelForm);
 app.post("/createBloggerForm", createBloggerForm);
 
 app.post("/Order7", async (req, resp) => {
-  const option = {
-    amount: Number(17700 * 100),
-    currency: "INR",
-  };
-  const order = await instance.orders.create(option);
-  console.log(order);
-  resp.status(200).json({
-    success: true,
-    order,
-  });
+  console.log("REQ BODY", req.body);
+  try {
+    console.log("Entered");
+    const option = {
+      amount: Number(17700 * 100),
+      currency: "INR",
+    };
+    console.log("Options", option);
+    const order = await instance.orders.create(option);
+    console.log("ORDER", order);
+    resp.status(200).json({
+      success: true,
+      order,
+    });
+  } catch (error) {
+    console.log("Order 7", error);
+    resp.status(401).send({ message: "ERROR OCCURRED!" });
+  }
 });
 app.post("/Order8", async (req, resp) => {
   const option = {
@@ -415,4 +425,23 @@ app.post("/Order10", async (req, resp) => {
     success: true,
     order,
   });
+});
+
+app.post("/Order11", async (req, resp) => {
+  const { amount } = req.body;
+  console.log(amount);
+  try {
+    const option = {
+      amount: Number(amount * 100),
+      currency: "INR",
+    };
+    const order = await instance.orders.create(option);
+    console.log(order);
+    resp.status(200).json({
+      success: true,
+      order,
+    });
+  } catch (error) {
+    console.log("Order 11", error);
+  }
 });

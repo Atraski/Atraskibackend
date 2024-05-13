@@ -7,7 +7,7 @@ module.exports = mongoose
     useUnifiedTopology: true,
   })
   .then((then) => {
-    console.log("Connected to database");
+    console.log(`Connected to database on port - ${process.env.PORT}`);
   })
   .catch((e) => {
     console.log(e);
