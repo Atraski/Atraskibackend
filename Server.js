@@ -14,8 +14,8 @@ const cors = require("cors");
 const form2 = require("./FormData");
 const form3 = require("./FormData");
 const corsOptions = {
-  // origin: "https://atraski.com",
-  origin: "*",
+  origin: "https://atraski.com",
+  // origin: "*",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   optionsSuccessStatus: 204,
