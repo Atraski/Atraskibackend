@@ -31,6 +31,7 @@ const { createPlaceLogo } = require("./controllers/PlaceLogo");
 const { createFashionAttendee } = require("./controllers/FashionAttendee");
 const { createModelForm } = require("./controllers/ModelForm");
 const { createBloggerForm } = require("./controllers/BloggerForm");
+const { createMumbaiBloggerForm } = require("./controllers/MumbaiBloggerMela");
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -368,6 +369,7 @@ app.post("/createPlaceLogo", createPlaceLogo);
 app.post("/createFashionAttendee", createFashionAttendee);
 app.post("/createModelForm", createModelForm);
 app.post("/createBloggerForm", createBloggerForm);
+app.post("/createMumbaiBloggerForm", createMumbaiBloggerForm);
 
 app.post("/Order7", async (req, resp) => {
   console.log("REQ BODY", req.body);
@@ -428,6 +430,24 @@ app.post("/Order10", async (req, resp) => {
 });
 
 app.post("/Order11", async (req, resp) => {
+  const { amount } = req.body;
+  console.log(amount);
+  try {
+    const option = {
+      amount: Number(amount * 100),
+      currency: "INR",
+    };
+    const order = await instance.orders.create(option);
+    console.log(order);
+    resp.status(200).json({
+      success: true,
+      order,
+    });
+  } catch (error) {
+    console.log("Order 11", error);
+  }
+});
+app.post("/Order12", async (req, resp) => {
   const { amount } = req.body;
   console.log(amount);
   try {
